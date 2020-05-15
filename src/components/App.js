@@ -4,6 +4,7 @@ import AppHeader from './AppHeader';
 import SearchPanel from './SearchPanel';
 import Dashboard from './Dashboard';
 import API from '../utils/API';
+import Wrapper from './Wrapper';
 
 // const fetchFilms = async () => {
 //   await API.get('films/')
@@ -25,12 +26,14 @@ const App = () => {
 
   const moviesData = films;
 
+
+
   return (
-    <div>
+    <Wrapper>
       <AppHeader />
       <Dashboard movies={moviesData} />
       <SearchPanel />
-    </div>
+    </Wrapper>
   );
 };
 
