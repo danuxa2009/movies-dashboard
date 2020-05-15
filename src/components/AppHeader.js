@@ -1,7 +1,13 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const Title = styled.h1`
+  text-align: center;
+  color: palevioletred;
+`;
 
 const AppHeader = () => {
-  return <h1>dashboard</h1>;
+  return <Title>Dashboard</Title>;
 };
 
 export default AppHeader;
