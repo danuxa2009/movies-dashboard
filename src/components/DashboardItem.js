@@ -28,15 +28,15 @@ const FavoriteIcon = styled(FontAwesomeIcon)`
 `;
 
 const DashboardItem = ({ title, favorite }) => {
-  let st = favorite;
+  
  
   return (
     <WrapperFilms>
       <FavoriteIcon
         onClick={() => {
-          st = !st;
+          favorite = !favorite;
         }}
-        icon={st ? faHeart :faHeartRegular}
+        icon={favorite ? faHeart :faHeartRegular}
 
         color='palevioletred'
         

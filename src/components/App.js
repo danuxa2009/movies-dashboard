@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
 import AppHeader from './AppHeader';
 import SearchPanel from './SearchPanel';
 import Dashboard from './Dashboard';
 import API from '../utils/API';
 import Wrapper from './Wrapper';
-import {createStore}  from 'redux'
+import { connect } from 'react-redux';
+
 // const fetchFilms = async () => {
 //   await API.get('films/')
 //   .then(res => {
@@ -14,27 +14,37 @@ import {createStore}  from 'redux'
 
 // };
 
+
+
+
 const App = () => {
   let [films, setFilms] = useState([]);
   useEffect(() => {
     fetch('https://swapi.dev/api/films/')
       .then((resp) => resp.json())
       .then((data) => {
-        setFilms(data.results);
-
+        let filmItem = data.results;
+        filmItem.forEach((item) => (item.favorite = false));
+        setFilms(filmItem);
+        console.log('in func', filmItem);
       });
   }, []);
-
-  const moviesData = films;
-
+  
+  
 
   return (
     <Wrapper>
       <AppHeader />
-      <Dashboard movies={moviesData} />
+      <Dashboard movies={films} />
       <SearchPanel />
     </Wrapper>
   );
 };
 
-export default App;
+const mapStateToProps = (state)=> {
+  return {
+    counter: state
+  }
+}
+
+export default connect(mapStateToProps)(App);
