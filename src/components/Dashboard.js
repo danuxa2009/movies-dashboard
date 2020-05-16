@@ -5,12 +5,12 @@ import styled from 'styled-components';
 const UlStyle = styled.div`
   list-style-type: none;
   cursor: pointer;
-  
+
 `;
 
-const Dashboard = ({ movies }) => {
+const Dashboard = ({ movies,favorite=false }) => {
   const elements = movies.map((item) => {
-    return <DashboardItem key={item.episode_id} title={item.title} />;
+    return <DashboardItem favorite={favorite} key={item.episode_id} title={item.title} />;
   });
 
   return <UlStyle>{elements}</UlStyle>;

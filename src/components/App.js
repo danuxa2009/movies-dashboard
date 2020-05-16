@@ -5,7 +5,7 @@ import SearchPanel from './SearchPanel';
 import Dashboard from './Dashboard';
 import API from '../utils/API';
 import Wrapper from './Wrapper';
-
+import {createStore}  from 'redux'
 // const fetchFilms = async () => {
 //   await API.get('films/')
 //   .then(res => {
@@ -21,11 +21,11 @@ const App = () => {
       .then((resp) => resp.json())
       .then((data) => {
         setFilms(data.results);
+
       });
   }, []);
 
   const moviesData = films;
-
 
 
   return (

@@ -7,8 +7,13 @@ const SearchInput = styled.input`
   height:15px;
 `;
 
+const search = (event) => {
+  console.log(event.target.value);
+  
+}
+
 const SearchPanel = () => {
-  return <SearchInput placeholder='search' />;
+  return <SearchInput onChange= {search} placeholder='search' />;
 };
 
 export default SearchPanel;
