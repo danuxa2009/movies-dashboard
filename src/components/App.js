@@ -1,50 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState} from 'react';
 import AppHeader from './AppHeader';
 import SearchPanel from './SearchPanel';
 import Dashboard from './Dashboard';
-import API from '../utils/API';
 import Wrapper from './Wrapper';
 import { connect } from 'react-redux';
+import { getFilmsAsync } from '../store/actions/actions';
 
-// const fetchFilms = async () => {
-//   await API.get('films/')
-//   .then(res => {
-//     const movies = res.data
-//   })
-
-// };
-
-
-
-
-const App = () => {
+const App = (props) => {
   let [films, setFilms] = useState([]);
-  useEffect(() => {
-    fetch('https://swapi.dev/api/films/')
-      .then((resp) => resp.json())
-      .then((data) => {
-        let filmItem = data.results;
-        filmItem.forEach((item) => (item.favorite = false));
-        setFilms(filmItem);
-        console.log('in func', filmItem);
-      });
-  }, []);
+ 
   
-  
+  useEffect(()=> {
+    // props.getFilmsAsync()
+    setFilms(props.films)
+    
+  },[props.films])
 
+  
   return (
     <Wrapper>
       <AppHeader />
-      <Dashboard movies={films} />
+      <Dashboard films={films} />
       <SearchPanel />
+      <button onClick = {()=> props.getFilmsAsync()}>FETCH</button>
     </Wrapper>
   );
 };
+const mapStateToProps = (state) => ({
+  films: state.films
+});
 
-const mapStateToProps = (state)=> {
+const mapDispatchToProps = (dispatch) => {
   return {
-    counter: state
-  }
-}
+    getFilmsAsync: () => dispatch(getFilmsAsync()),
+  };
+};
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

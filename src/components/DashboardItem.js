@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faHeart } from '@fortawesome/free-solid-svg-icons';
-import {faHeart as faHeartRegular} from '@fortawesome/free-regular-svg-icons'
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
 
 const ItemFilm = styled.div`
   display: flex;
@@ -27,21 +27,17 @@ const FavoriteIcon = styled(FontAwesomeIcon)`
   margin: 3px;
 `;
 
-const DashboardItem = ({ title, favorite }) => {
-  
- 
+const DashboardItem = ({ title, favorite, id, onClickHandler }) => {
   return (
     <WrapperFilms>
       <FavoriteIcon
         onClick={() => {
-          favorite = !favorite;
+          onClickHandler(id);
         }}
-        icon={favorite ? faHeart :faHeartRegular}
-
+        icon={favorite ? faHeart : faHeartRegular}
         color='palevioletred'
-        
       />
-      
+
       <ItemFilm>{title}</ItemFilm>
     </WrapperFilms>
   );
